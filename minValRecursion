@@ -1,0 +1,34 @@
+import java.util.*;
+
+public class minValRecursion {
+    static Random rg = new Random();                                                        
+    static int [] myArray = new int[10];                                    
+    public static void main (String [] args) {
+        for (int i=0; i<myArray.length; i++) {                                      //populates myArray with random values 0-99
+            myArray[i] = rg.nextInt(100);
+        }
+        System.out.println("Printing original array:");
+        for (int i=0; i<myArray.length; i++) {
+            System.out.print("[" + (myArray[i]) + "]" + " "); 
+        }
+        System.out.println("\nThe minimum value in the array is: " + getMin((myArray), myArray.length));
+    }
+
+    public static int getMin (int [] anArray, int arraySize) {                      //recursive method to find min value in array
+        int minimum = 999;
+        if (arraySize < 1) {                                                        //base case
+            for (int i = 0; i<anArray.length; i++) {
+                if (anArray[i] < minimum) {
+                minimum = anArray[i];
+            }
+            }
+        }
+        else if (arraySize > 0) {                                                   //recursive case
+            arraySize--;
+            if (getMin(anArray, arraySize) < minimum) {
+             minimum = getMin(anArray, arraySize);   
+            }
+        }
+        return minimum;
+    }
+}
